@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Search Results</title>
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .grid-item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .product-image {
+            max-width: 200px;
+            max-height: 200px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Product Search Results</h1>
+    <h2>Showing results for: {{ keyword }} in different sites</h2>
+    <div class="grid-container">
+        {% for site, product_info in product_infos.items() %}
+        <div class="grid-item">
+            <h3>{{ site }}</h3>
+            {% for product in product_info %}
+            <img src="{{ product.image }}" alt="{{ product.name }}" class="product-image">
+            <p>{{ product.name }}</p>
+            <p>{{ product.price }}</p>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
